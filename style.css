@@ -250,3 +250,5 @@ body:has(.loading) .fv__en .fv__ln > span { animation-delay: calc(var(--loading-
 .company__stage > .fl, .company__stage > .company__txt, .company__stage > .company__mapw { z-index: 1; }
 @media (max-width: 959px) { .pipes--work { top: 0; height: 22%; opacity: 0.25; } }
 .company__txt .pbtn { min-height: 64px; padding: 0 28px 0 40px; font-size: 16px; gap: 24px; }
+
+.list { position: relative; z-index: 1; background: var(--c-base); box-shadow: 0 0 0 32px var(--c-base); }
