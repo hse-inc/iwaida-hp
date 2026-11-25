@@ -224,8 +224,9 @@ body:has(.loading) .fv__en .fv__ln > span { animation-delay: calc(var(--loading-
 .streaks span:nth-child(3) { left: 82%; animation-delay: -5s; }
 @keyframes streak { from { transform: translateX(-30vw) rotate(28deg); opacity: 0; } 30% { opacity: 1; } to { transform: translateX(30vw) rotate(28deg); opacity: 0; } }
 
-.work__photo.rv { opacity: 1; transform: none; clip-path: inset(0 100% 0 0); transition: clip-path 1.4s var(--ease); }
-.work__photo.rv.is-on { clip-path: inset(-20px -20px -20px -20px); }
+.work__photo.rv { opacity: 1; transform: none; clip-path: inset(-20px); }
+.work__photo.rv.is-on { animation: wipe-in 1.4s var(--ease) both; }
+@keyframes wipe-in { from { clip-path: inset(-20px 100% -20px -20px); } to { clip-path: inset(-20px); } }
 .work__photo img { transition: transform 6s var(--ease); }
 .work__photo.is-on img { transform: scale(1.04); }
 .list li { position: relative; }
