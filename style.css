@@ -252,3 +252,40 @@ body:has(.loading) .fv__en .fv__ln > span { animation-delay: calc(var(--loading-
 .company__txt .pbtn { min-height: 64px; padding: 0 28px 0 40px; font-size: 16px; gap: 24px; }
 
 .list { position: relative; z-index: 1; background: var(--c-base); box-shadow: 0 0 0 32px var(--c-base); }
+
+.progress { position: fixed; left: 0; top: 0; z-index: 60; width: 100%; height: 3px; pointer-events: none; }
+.progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--c-sky-1), var(--c-sub), var(--c-sub-deep)); transform: scaleX(var(--p, 0)); transform-origin: left; }
+
+.cursor { position: fixed; left: 0; top: 0; z-index: 70; width: 36px; height: 36px; margin: -18px 0 0 -18px; border: 1.5px solid var(--c-sub); border-radius: 50%; pointer-events: none; opacity: 0; transition: width 0.3s var(--ease), height 0.3s var(--ease), margin 0.3s var(--ease), background-color 0.3s var(--ease), opacity 0.3s; }
+.cursor.is-on { opacity: 0.8; }
+.cursor.is-link { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: var(--c-w35); }
+
+.fv__spark { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.fv__spark span { position: absolute; left: var(--x); top: var(--y); width: 6px; height: 6px; border-radius: 50%; background: var(--c-base); box-shadow: 0 0 12px 3px var(--c-w60); opacity: 0; animation: spark 4.2s ease-in-out var(--d) infinite; }
+@keyframes spark { 0%, 100% { opacity: 0; transform: translateY(10px) scale(0.6); } 50% { opacity: 0.9; transform: translateY(-16px) scale(1); } }
+.fv__sweep { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(105deg, var(--c-w0) 35%, var(--c-w35) 48%, var(--c-w0) 60%); background-size: 260% 100%; mix-blend-mode: soft-light; animation: shine 7s ease-in-out 2.5s infinite; }
+
+.seg { display: inline-block; white-space: nowrap; }
+.ch { display: inline-block; opacity: 0; transform: translateY(0.6em) rotate(6deg); transition: opacity 0.6s var(--ease), transform 0.8s var(--ease); transition-delay: calc(var(--i) * 0.035s); }
+.is-on .ch, .ch-on .ch { opacity: 1; transform: none; }
+
+.lbl { position: relative; overflow: hidden; }
+.lbl::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, var(--c-w0) 30%, var(--c-w60) 50%, var(--c-w0) 70%); background-size: 300% 100%; animation: shine 4s ease-in-out infinite; }
+
+.pbtn, .circle-btn { position: relative; }
+.pbtn::after, .circle-btn::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--c-sub); animation: ripple 2.4s ease-out infinite; pointer-events: none; }
+@keyframes ripple { from { opacity: 0.7; transform: scale(1); } to { opacity: 0; transform: scale(1.25, 1.6); } }
+
+.ach__track img { animation: bob 5s ease-in-out infinite alternate; }
+.ach__track li:nth-child(3n) img { animation-delay: -2s; }
+.ach__track li:nth-child(3n+1) img { animation-delay: -3.5s; }
+@keyframes bob { from { transform: scale(1.04) translateY(-6px); } to { transform: scale(1.1) translateY(6px); } }
+
+.fl { translate: 0 var(--py, 0px); }
+
+.list.rv li { opacity: 0; transform: translateX(40px); transition: opacity 0.7s var(--ease), transform 0.9s var(--ease); }
+.list.rv.is-on li { opacity: 1; transform: none; }
+.list.rv.is-on li:nth-child(2) { transition-delay: 0.12s; }
+.list.rv.is-on li:nth-child(3) { transition-delay: 0.24s; }
+.list.rv.is-on li:nth-child(4) { transition-delay: 0.36s; }
+@media (prefers-reduced-motion: reduce) { .fv__spark, .fv__sweep, .cursor, .lbl::after, .pbtn::after, .circle-btn::after { display: none; } .ch { opacity: 1; transform: none; } }

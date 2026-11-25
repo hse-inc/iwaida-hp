@@ -55,6 +55,36 @@
   document.querySelectorAll('form[data-todo]').forEach((f) => f.addEventListener('submit', (e) => e.preventDefault()));
 
 
+
+  document.querySelectorAll('.h2, .rec-band__ttl').forEach((h) => {
+    let n = 0;
+    const walk = (el) => [...el.childNodes].forEach((c) => {
+      if (c.nodeType === 3) {
+        const f = document.createElement('span'); f.className = 'seg';
+        [...c.textContent].forEach((t) => { const sp = document.createElement('span'); sp.className = 'ch'; sp.style.setProperty('--i', n++); sp.textContent = t; f.appendChild(sp); });
+        c.replaceWith(f);
+      } else if (c.nodeType === 1 && c.tagName !== 'BR' && c.tagName !== 'WBR') walk(c);
+    });
+    walk(h);
+    if (window.__kitCheck) h.classList.add('ch-on');
+    else if (!h.classList.contains('rv')) io.observe(h);
+  });
+  const pbar = document.querySelector('.progress');
+  const fls = [...document.querySelectorAll('.fl')];
+  const onSc = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (pbar) pbar.style.setProperty('--p', max > 0 ? (scrollY / max).toFixed(4) : 0);
+    fls.forEach((f, k) => { const r = f.parentElement.getBoundingClientRect(); f.style.setProperty('--py', `${((r.top + r.height / 2 - innerHeight / 2) * (0.08 + (k % 3) * 0.05)).toFixed(1)}px`); });
+  };
+  if (!window.__kitCheck) { window.addEventListener('scroll', onSc, { passive: true }); onSc(); }
+  const cur = document.querySelector('.cursor');
+  if (cur && !window.__kitCheck && matchMedia('(min-width: 960px) and (hover: hover) and (pointer: fine)').matches) {
+    let x = 0, y = 0, cx = 0, cy = 0;
+    window.addEventListener('mousemove', (e) => { x = e.clientX; y = e.clientY; cur.classList.add('is-on'); cur.classList.toggle('is-link', !!e.target.closest('a, button')); });
+    const loop = () => { cx += (x - cx) * 0.18; cy += (y - cy) * 0.18; cur.style.transform = `translate(${cx}px, ${cy}px)`; requestAnimationFrame(loop); };
+    loop();
+  }
+
   const pio = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-on'); pio.unobserve(e.target); } }), { rootMargin: '0px 0px -15% 0px' });
   document.querySelectorAll('.pipes').forEach((el) => window.__kitCheck ? el.classList.add('is-on') : pio.observe(el));
 
