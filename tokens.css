@@ -66,6 +66,11 @@
   --c-sky-1: #6fd3f7;   
   --c-grad: linear-gradient(180deg, var(--c-sky-1), var(--c-sub) 45%, var(--c-sub-deep));
 
+  --c-btn: #0a8fcf;   
+  --c-fv-shade: rgba(4, 40, 78, 0.45);
+  --c-fv-shade-2: rgba(4, 40, 78, 0.15);
+  --c-fv-shade-pc: rgba(6, 40, 90, 0.62);
+
   
   --c-w0: rgba(255, 255, 255, 0);
   --c-w35: rgba(255, 255, 255, 0.35);
