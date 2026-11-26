@@ -330,7 +330,9 @@ body:has(.loading) .fv__en .fv__ln > span { animation-delay: calc(var(--loading-
 .ttl2__en { font-family: var(--ff-en); font-weight: 600; font-size: 13px; letter-spacing: 0.08em; color: var(--c-sub); }
 .msg { display: grid; gap: var(--sp-g); }
 .msg__body { display: grid; gap: var(--sp-b); align-content: start; }
-.msg__sign { justify-self: end; text-align: right; font-size: var(--fs-small); line-height: 1.9; }
+.msg__txt { display: grid; gap: 1.2em; line-height: 2; }
+.msg__note { font-size: var(--fs-small); color: var(--c-ink-soft); }
+.msg__sign { justify-self: start; text-align: left; font-size: var(--fs-small); line-height: 1.9; }
 .msg__name { font-size: 18px; font-weight: 700; letter-spacing: 0.12em; }
 .msg__photo { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5; width: min(70%, 260px); justify-self: center; border-radius: 20px; background: var(--c-pale); color: var(--c-ink-soft); font-size: var(--fs-small); text-align: center; }
 .msg__photo::before { content: ""; position: absolute; inset: 14px -14px -14px 14px; z-index: -1; border-radius: 20px; background: var(--c-sky-1); }
@@ -355,12 +357,12 @@ body:has(.loading) .fv__en .fv__ln > span { animation-delay: calc(var(--loading-
 .anc__list.rv > li { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.7s var(--ease); }
 .anc__list.rv.is-on > li { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 0.08s + 0.3s); }
 
-.svc__photo.rv { opacity: 1; transform: none; clip-path: inset(0 100% 0 0); transition: clip-path 1.2s var(--ease); }
+.svc__photo.rv { opacity: 1; transform: none; clip-path: inset(0 100% 0 0); transition: clip-path 0.7s var(--ease); }
 .svc__photo.rv.is-on { clip-path: inset(0); }
-.svc__photo img { transform: scale(1.12); transition: transform 2.4s var(--ease); }
+.svc__photo img { transform: scale(1.08); transition: transform 1.2s var(--ease); }
 .svc__photo.is-on img { transform: none; }
 .svc__wm.rv { transform: translateX(-8%); transition: opacity 1s var(--ease), transform 1.6s var(--ease); }
-.svc__wm.rv.is-on { transform: none; transition-delay: 0.4s; }
+.svc__wm.rv.is-on { transform: none; transition-delay: 0.2s; }
 
 .gal { perspective: 1600px; }
 .flip { opacity: 0; transform: rotateY(-100deg); transform-origin: left center; transition: opacity 0.3s linear var(--d, 0s), transform 0.9s cubic-bezier(0.2, 0.75, 0.25, 1.05) var(--d, 0s); backface-visibility: hidden; }
