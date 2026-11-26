@@ -56,7 +56,7 @@
 
 
 
-  document.querySelectorAll('.h2, .rec-band__ttl').forEach((h) => {
+  document.querySelectorAll('.h2, .rec-band__ttl, .sh__ttl, .svc__ttl, .ttl2__ja').forEach((h) => {
     let n = 0;
     const walk = (el) => [...el.childNodes].forEach((c) => {
       if (c.nodeType === 3) {
@@ -114,4 +114,18 @@
       if (stop) { clearTimeout(timer); bar.classList.remove('is-run'); } else run();
     });
   }
+})();
+
+(() => {
+  const flips = [...document.querySelectorAll('.flip')];
+  if (window.__kitCheck) { flips.forEach((el) => el.classList.add('is-on')); }
+  else {
+    const fio = new IntersectionObserver((es) => {
+      const ins = es.filter((e) => e.isIntersecting).map((e) => e.target)
+        .sort((a, b) => (a.getBoundingClientRect().top - b.getBoundingClientRect().top) || (a.getBoundingClientRect().left - b.getBoundingClientRect().left));
+      ins.forEach((el, k) => { el.style.setProperty('--d', `${k * 0.09}s`); el.classList.add('is-on'); fio.unobserve(el); });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    flips.forEach((el) => fio.observe(el));
+  }
+  document.querySelectorAll('.info--co, .ct__form, .anc__list').forEach((box) => [...box.children].forEach((c, i) => c.style.setProperty('--i', i)));
 })();
